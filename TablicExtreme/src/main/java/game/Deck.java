@@ -10,9 +10,11 @@ public class Deck {
 
     private ArrayList<Card> cards;
 
-    public Deck() throws Exception {
+    public Deck(boolean random) throws Exception {
         cards = DeckUtil.getStandardCards();
-        shuffle();
+
+        if(random)
+            shuffle();
     }
 
     public Card takeCard(){
