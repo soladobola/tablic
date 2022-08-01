@@ -1,5 +1,5 @@
 package agent;
 
 public interface Agent {
-    void play();
+    State play(State state);
 }

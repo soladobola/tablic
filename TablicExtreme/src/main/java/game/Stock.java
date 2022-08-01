@@ -26,6 +26,20 @@ public class Stock {
 
     }
 
+
+    // TODO: Test this function
+    public int totalPoints(){
+        int total = 0;
+        for(ArrayList<Card> entry : stock.values()){
+            for(Card card : entry){
+                total += card.getPoints();
+            }
+        }
+
+        return total;
+    }
+
+
     // Ugly cast!! TODO: Fix it
     public Stock clone(){
         return new Stock((HashMap<String, ArrayList<Card>>) this.stock.clone());
