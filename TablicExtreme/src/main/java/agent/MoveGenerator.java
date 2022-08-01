@@ -1,8 +1,8 @@
 package agent;
 
 import game.Card;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.*;
 
 public class MoveGenerator {
 
@@ -18,15 +18,55 @@ public class MoveGenerator {
 
             boardClone.add(handClone.remove(i));
 
-            // history is the same
-            moves.add(new State(handClone, state.history, boardClone, state.enemyCardCount));
+            moves.add(new State(handClone, state.myStock.clone(), state.enemyStock.clone(), boardClone, state.enemyCardCount));
 
         }
 
         return moves;
     }
 
-    
+    // TODO: Multiple capture
+    public static ArrayList<State> generateCaptureMoves(State state){
+        ArrayList<State> states = new ArrayList<>();
+
+        Set<List<Integer>> uniqueCaptures = new HashSet<>();
+
+        // Indexes corresponds with Card objects in state.board
+        for(int handCardInd = 0; handCardInd < state.hand.size(); handCardInd++){
+            List<List<Integer>> permutedValues = permuteAces(state.board);
+            for(List<Integer> values : permutedValues){
+
+                for(int target : state.hand.get(handCardInd).getValue()) {
+                    List<List<Integer>> sums = subsetSum(values, target);
+
+                    uniqueCaptures.addAll(sums);
+                }
+            }
+
+            // Construct state
+            for(List<Integer> sumPair : uniqueCaptures){
+
+                // mess, somehow indexes are shifted
+                State currentState = state.clone();
+                // Ok removing element
+                currentState.myStock.add(state.hand.get(handCardInd).getSymbol(), currentState.hand.remove(handCardInd));
+
+                // delete elements safe! set to null, remove all at the end
+                for(int i : sumPair){
+                    currentState.myStock.add(currentState.board.get(i).getSymbol(), currentState.board.get(i));
+                    currentState.board.set(i, null);
+                }
+
+                currentState.board.removeAll(Collections.singleton(null));
+                states.add(currentState);
+            }
+
+            uniqueCaptures.clear();
+
+        }
+
+        return states;
+    }
 
 
     public static List<List<Integer>> subsetSum(List<Integer> values, int target){
@@ -86,5 +126,7 @@ public class MoveGenerator {
         changeAces(result, branch2, indexes, current + 1);
 
     }
+
+
 
 }

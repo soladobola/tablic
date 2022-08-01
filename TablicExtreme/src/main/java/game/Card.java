@@ -16,6 +16,8 @@ public class Card {
         this.points = points;
     }
 
+
+
     public ArrayList<Integer> getValue() {
         return values;
     }
