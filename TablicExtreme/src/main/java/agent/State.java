@@ -14,7 +14,7 @@ public class State {
     public Stock enemyStock;
     public ArrayList<Card> board;
 
-    int enemyCardCount;
+    public int enemyCardCount;
 
 
     public State(){

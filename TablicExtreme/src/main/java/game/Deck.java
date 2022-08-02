@@ -27,6 +27,10 @@ public class Deck {
         Collections.shuffle(cards);
     }
 
+    public int getSize(){
+        return cards.size();
+    }
+
     public void print(){
         for(Card card : cards){
             System.out.println(card);
