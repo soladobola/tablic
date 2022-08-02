@@ -2,9 +2,10 @@ package game;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
-public class Stock {
+public class Stock implements Iterable<ArrayList<Card>> {
     private HashMap<String, ArrayList<Card>> stock;
 
     public Stock() {
@@ -45,6 +46,8 @@ public class Stock {
         return new Stock((HashMap<String, ArrayList<Card>>) this.stock.clone());
     }
 
+
+
     @Override
     public String toString() {
         return "Stock{" +
@@ -52,6 +55,8 @@ public class Stock {
                 '}';
     }
 
-
-    // TODO: Search API
+    @Override
+    public Iterator<ArrayList<Card>> iterator() {
+        return new StockIterator(this.stock);
+    }
 }

@@ -40,4 +40,31 @@ public class State {
         return new State(handClone, myStock.clone(), enemyStock.clone(), boardClone, this.enemyCardCount);
     }
 
+
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder();
+        string.append("Hand: ");
+        for(Card card : this.hand){
+           string.append(card.getSymbol()).append(" ");
+        }
+        string.append("\n");
+
+        string.append("Board: ");
+        for(Card card : this.board){
+            string.append(card.getSymbol()).append(" ");
+        }
+        string.append("\n");
+
+        string.append("Stock: ");
+        for(ArrayList<Card> cards : this.myStock){
+            for(Card card : cards){
+                string.append(card.getSymbol()).append(" ");
+            }
+        }
+        string.append("\n");
+
+
+        return string.toString();
+    }
 }
