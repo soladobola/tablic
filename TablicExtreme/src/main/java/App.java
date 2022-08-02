@@ -1,5 +1,6 @@
-import agent.MoveGenerator;
-import agent.State;
+import agent.*;
+import arena.Contest;
+import arena.Manager;
 import game.Deck;
 import game.util.DeckUtil;
 
@@ -11,20 +12,11 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
-        Deck deck = new Deck(true);
-        State state = new State();
+        Agent player1 = new GreedyAgent();
+        Agent player2 = new RandomAgent();
 
-        state.board.add(deck.takeCard());
-        state.board.add(deck.takeCard());
-        state.board.add(deck.takeCard());
-        state.board.add(deck.takeCard());
-
-        System.out.println(state.board);
-
-        List<List<Integer>> values = MoveGenerator.permuteAces(state.board);
-
-        System.out.println(values);
-
+        Contest contest = new Contest(player1, player2, 1000);
+        contest.startContest();
 
 
     }

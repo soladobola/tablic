@@ -2,6 +2,7 @@ package agent;
 
 import game.Card;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class MoveGenerator {
@@ -66,6 +67,13 @@ public class MoveGenerator {
         }
 
         return states;
+    }
+
+
+    public static ArrayList<State> generateAllMoves(State state){
+        ArrayList<State> moves = generateCardOnBoardMoves(state);
+        moves.addAll(generateCaptureMoves(state));
+        return moves;
     }
 
 

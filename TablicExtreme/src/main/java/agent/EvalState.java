@@ -15,6 +15,9 @@ public class EvalState {
    }
 
 
+    public int getPoints(){
+       return pointsWon;
+    }
 
     @Override
     public String toString() {

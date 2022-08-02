@@ -41,9 +41,20 @@ public class Stock implements Iterable<ArrayList<Card>> {
     }
 
 
-    // Ugly cast!! TODO: Fix it
+
     public Stock clone(){
-        return new Stock((HashMap<String, ArrayList<Card>>) this.stock.clone());
+
+        HashMap<String, ArrayList<Card>> mapClone = new HashMap<>();
+
+        for (Map.Entry<String, ArrayList<Card>> entry : stock.entrySet()) {
+            String key = entry.getKey();
+            ArrayList<Card> value = entry.getValue();
+            mapClone.put(key, new ArrayList<Card>(value));
+
+        }
+
+        return new Stock(mapClone);
+
     }
 
 
