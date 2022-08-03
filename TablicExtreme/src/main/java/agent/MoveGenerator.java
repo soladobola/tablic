@@ -44,6 +44,19 @@ public class MoveGenerator {
                 }
             }
 
+
+
+            // multiple single capture:
+            List<Integer> multipleCapture = new ArrayList<>();
+            for(List<Integer> capture : uniqueCaptures){
+                if(capture.size() == 1) multipleCapture.add(capture.get(0));
+            }
+            if(multipleCapture.size() > 1)
+                uniqueCaptures.add(multipleCapture);
+
+
+
+
             // Construct state
             for(List<Integer> sumPair : uniqueCaptures){
 

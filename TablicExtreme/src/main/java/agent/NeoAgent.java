@@ -26,5 +26,10 @@ public class NeoAgent implements Agent{
         this.currentState.hand.add(card);
     }
 
+    @Override
+    public void reset() {
+
+    }
+
 
 }

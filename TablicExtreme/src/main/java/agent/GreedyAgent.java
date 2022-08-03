@@ -41,4 +41,9 @@ public class GreedyAgent implements Agent {
     public void addCardToHand(Card card) {
         this.currentState.hand.add(card);
     }
+
+    @Override
+    public void reset() {
+
+    }
 }

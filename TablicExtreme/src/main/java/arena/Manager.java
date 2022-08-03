@@ -33,7 +33,6 @@ public class Manager {
         }
     }
 
-    // TODO: Make this function better
     // Note: Only player1 board is set because he is on the move
     private void setBoardCards(){
         for(int i = 0; i < 4; i++){
@@ -41,8 +40,7 @@ public class Manager {
         }
     }
 
-    // TODO: Player to go first is changed after each deal
-    public void playGame() {
+    public void playGame() throws Exception {
         setBoardCards();
         while(deck.getSize() > 0){
             dealCards();
@@ -60,15 +58,14 @@ public class Manager {
                 player1.getCurrentState().board = newState.board;
                 player1.getCurrentState().enemyCardCount = newState.hand.size();
 
-                // after all rounds we will be at original player1 and player2 because of math :)
-                switchPlayer();
 
             }
 
+            // after all rounds we will be at original player1 and player2 because of math :)
+            switchPlayer();
+
         }
 
-       // System.out.println("Player 1: " + player1.getCurrentState().myStock.totalPoints() + " points");
-       // System.out.println("Player 2: " + player2.getCurrentState().myStock.totalPoints() + " points");
     }
 
 

@@ -56,6 +56,7 @@ public class Node {
     }
 
 
+    // Should be ok
     public State getStateByColor(int color){
 
         State state = new State();
