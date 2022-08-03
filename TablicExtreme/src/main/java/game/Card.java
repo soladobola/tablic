@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Card {
 
@@ -32,6 +33,19 @@ public class Card {
 
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return points == card.points && values.equals(card.values) && symbol.equals(card.symbol);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(values, symbol, points);
+    }
+
+    @Override
     public String toString() {
         return "Card{" +
                 "values=" + values +
@@ -39,4 +53,9 @@ public class Card {
                 ", points=" + points +
                 '}' + "\n";
     }
+
+
+
+
+
 }

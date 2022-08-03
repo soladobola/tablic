@@ -7,6 +7,11 @@ public class EvalState {
    public State state;
    public int pointsWon;
 
+   // Endgame properties
+    public int totalPointsOnPath = 0;
+
+
+
    public EvalState(State prevState, State state){
 
        this.prevState = prevState;

@@ -31,6 +31,14 @@ public class Deck {
         return cards.size();
     }
 
+    public void remove(Card card){
+        cards.remove(card);
+    }
+
+    public ArrayList<Card> getCards(){
+        return cards;
+    }
+
     public void print(){
         for(Card card : cards){
             System.out.println(card);

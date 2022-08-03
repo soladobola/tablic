@@ -70,9 +70,10 @@ public class MoveGenerator {
     }
 
 
+    // Ordering important because of the endgame
     public static ArrayList<State> generateAllMoves(State state){
-        ArrayList<State> moves = generateCardOnBoardMoves(state);
-        moves.addAll(generateCaptureMoves(state));
+        ArrayList<State> moves = generateCaptureMoves(state);
+        moves.addAll(generateCardOnBoardMoves(state));
         return moves;
     }
 

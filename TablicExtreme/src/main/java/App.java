@@ -15,7 +15,7 @@ public class App {
         Agent player1 = new GreedyAgent();
         Agent player2 = new RandomAgent();
 
-        Contest contest = new Contest(player1, player2, 1000);
+        Contest contest = new Contest(player1, player2, 10000);
         contest.startContest();
 
 
