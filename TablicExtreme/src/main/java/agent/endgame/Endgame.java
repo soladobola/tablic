@@ -28,16 +28,16 @@ public class Endgame {
     }
 
 
-    public MoveValue alphaBeta(Node node, int alpha, int beta, int color){
+    public StateValue alphaBeta(Node node, int alpha, int beta, int color){
 
         State state = node.getStateByColor(color);
         if(state.hand.isEmpty()){
 
-            return new MoveValue(node.eval());
+            return new StateValue(node.eval());
         }
 
-        MoveValue returnMove = null;
-        MoveValue bestMove = null;
+        StateValue returnMove = null;
+        StateValue bestMove = null;
 
         if(color == 1){
 
@@ -47,7 +47,7 @@ public class Endgame {
                 returnMove = alphaBeta(childNode, alpha, beta, -1);
                 if ((bestMove == null) || (bestMove.returnValue < returnMove.returnValue)) {
                     bestMove = returnMove;
-                    bestMove.returnMove = childNode;
+                    bestMove.returnState = childNode;
                 }
                 if (returnMove.returnValue > alpha) {
                     alpha = returnMove.returnValue;
@@ -55,7 +55,7 @@ public class Endgame {
                 }
                 if (beta <= alpha) {
                     bestMove.returnValue = beta;
-                    bestMove.returnMove = null;
+                    bestMove.returnState = null;
                     return bestMove; // pruning
                 }
 
@@ -71,7 +71,7 @@ public class Endgame {
                 returnMove = alphaBeta(childNode, alpha, beta, 1);
                 if ((bestMove == null) || (bestMove.returnValue > returnMove.returnValue)) {
                     bestMove = returnMove;
-                    bestMove.returnMove = childNode;
+                    bestMove.returnState = childNode;
                 }
                 if (returnMove.returnValue < beta) {
                     beta = returnMove.returnValue;
@@ -79,7 +79,7 @@ public class Endgame {
                 }
                 if (beta <= alpha) {
                     bestMove.returnValue = alpha;
-                    bestMove.returnMove = null;
+                    bestMove.returnState = null;
                     return bestMove; // pruning
                 }
 
@@ -95,11 +95,11 @@ public class Endgame {
     public State getBestMove(State state, ArrayList<Card> enemyHand){
 
         Node startNode = new Node(state.hand, enemyHand, state.myStock, state.enemyStock, state.board);
-        MoveValue move = alphaBeta(startNode, Integer.MIN_VALUE, Integer.MAX_VALUE, 1);
+        StateValue move = alphaBeta(startNode, Integer.MIN_VALUE, Integer.MAX_VALUE, 1);
 
-        System.out.println("Eval: " + move.returnValue);
+        //System.out.println("Eval: " + move.returnValue);
 
-        return move.returnMove.getStateByColor(1);
+        return move.returnState.getStateByColor(1);
 
     }
 

@@ -13,9 +13,9 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         Agent player1 = new GreedyAgent();
-        Agent player2 = new GreedyAgentWIthEndgame();
+        Agent player2 = new GreedyAgent();
 
-        Contest contest = new Contest(player1, player2, 100);
+        Contest contest = new Contest(player1, player2, 100000);
         contest.startContest();
 
 

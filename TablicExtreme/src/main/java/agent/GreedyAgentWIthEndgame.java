@@ -14,10 +14,9 @@ public class GreedyAgentWIthEndgame implements Agent {
 
     @Override
     public State play() throws Exception {
-        if(cardsTaken <= 18) {
+        if(!isLastHand()){
 
             ArrayList<State> moves = MoveGenerator.generateAllMoves(currentState);
-            // Wrap to eval object
             ArrayList<EvalState> evalMoves = new ArrayList<>();
             for (State s : moves) {
                 evalMoves.add(new EvalState(currentState, s));
@@ -26,16 +25,16 @@ public class GreedyAgentWIthEndgame implements Agent {
             evalMoves.sort(comparing(EvalState::getPoints).reversed());
 
             this.currentState = evalMoves.get(0).state;
-            return this.currentState;
 
         } else {
 
             Endgame endgame = new Endgame();
             ArrayList<Card> enemyHand = endgame.calculateEnemyHand(currentState);
             this.currentState = endgame.getBestMove(currentState, enemyHand);
-            return currentState;
 
         }
+
+        return this.currentState;
     }
 
     @Override
@@ -57,5 +56,9 @@ public class GreedyAgentWIthEndgame implements Agent {
     @Override
     public void reset() {
         cardsTaken = 0;
+    }
+
+    private boolean isLastHand(){
+        return cardsTaken > 18;
     }
 }
