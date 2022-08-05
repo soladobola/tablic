@@ -26,7 +26,7 @@ public class MoveGenerator {
         return moves;
     }
 
-    // TODO: Multiple capture
+
     public static ArrayList<State> generateCaptureMoves(State state){
         ArrayList<State> states = new ArrayList<>();
 
@@ -45,16 +45,9 @@ public class MoveGenerator {
             }
 
 
-
-            // multiple single capture:
-            List<Integer> multipleCapture = new ArrayList<>();
-            for(List<Integer> capture : uniqueCaptures){
-                if(capture.size() == 1) multipleCapture.add(capture.get(0));
-            }
-            if(multipleCapture.size() > 1)
-                uniqueCaptures.add(multipleCapture);
-
-
+            // multiple capture:
+            List<List<Integer>> multiCaptures = getMultiCaptures(new ArrayList<>(uniqueCaptures));
+            uniqueCaptures.addAll(multiCaptures);
 
 
             // Construct state
@@ -80,6 +73,27 @@ public class MoveGenerator {
         }
 
         return states;
+    }
+
+
+
+    private static List<List<Integer>> getMultiCaptures(List<List<Integer>> singleCaptures){
+
+        List<List<Integer>> moves = new ArrayList<>();
+
+        for(int i = 0; i < singleCaptures.size(); i++){
+            for(int j = i + 1; j < singleCaptures.size(); j++){
+                List<Integer> arr1 = singleCaptures.get(i);
+                List<Integer> arr2 = singleCaptures.get(j);
+                if(isHasCommonElement(arr1, arr2)) continue;
+                ArrayList<Integer> newMove = new ArrayList<>(arr1);
+                newMove.addAll(arr2);
+                moves.add(newMove);
+            }
+        }
+
+        return moves;
+
     }
 
 
@@ -147,6 +161,14 @@ public class MoveGenerator {
         changeAces(result, branch1, indexes, current + 1);
         changeAces(result, branch2, indexes, current + 1);
 
+    }
+
+
+    private static boolean isHasCommonElement(List<Integer> arr1, List<Integer> arr2){
+        for(int e : arr1){
+            if(arr2.contains(e)) return true;
+        }
+        return false;
     }
 
 
