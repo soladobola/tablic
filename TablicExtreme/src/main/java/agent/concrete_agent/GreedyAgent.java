@@ -1,5 +1,9 @@
-package agent;
+package agent.concrete_agent;
 
+import agent.Agent;
+import agent.EvalState;
+import agent.MoveGenerator;
+import agent.State;
 import game.Card;
 
 import java.util.ArrayList;

@@ -1,12 +1,6 @@
 import agent.*;
+import agent.concrete_agent.GreedyAgent;
 import arena.Contest;
-import arena.Manager;
-import game.Deck;
-import game.util.DeckUtil;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class App {
 
@@ -15,7 +9,7 @@ public class App {
         Agent player1 = new GreedyAgent();
         Agent player2 = new GreedyAgent();
 
-        Contest contest = new Contest(player1, player2, 100000);
+        Contest contest = new Contest(player1, player2, 1000);
         contest.startContest();
 
 

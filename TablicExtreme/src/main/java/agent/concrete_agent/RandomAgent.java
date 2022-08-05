@@ -1,11 +1,14 @@
-package agent;
+package agent.concrete_agent;
 
+import agent.Agent;
+import agent.MoveGenerator;
+import agent.State;
 import game.Card;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class RandomAgent implements Agent{
+public class RandomAgent implements Agent {
 
     State currentState;
 

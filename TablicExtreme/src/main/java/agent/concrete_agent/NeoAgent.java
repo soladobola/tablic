@@ -1,8 +1,10 @@
-package agent;
+package agent.concrete_agent;
 
+import agent.Agent;
+import agent.State;
 import game.Card;
 
-public class NeoAgent implements Agent{
+public class NeoAgent implements Agent {
 
     State currentState;
 
