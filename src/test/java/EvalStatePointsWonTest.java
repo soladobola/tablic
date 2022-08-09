@@ -26,7 +26,7 @@ public class EvalStatePointsWonTest {
         System.out.println("\n");
 
         for(State s : childStates){
-            EvalState es = new EvalState(state, s);
+            EvalState es = new EvalState(state, s, false);
             System.out.println("---------- Eval State-------------");
             System.out.println(es);
             System.out.println("\n");

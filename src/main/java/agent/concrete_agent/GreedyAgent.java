@@ -21,7 +21,7 @@ public class GreedyAgent implements Agent {
         // Wrap to eval object
         ArrayList<EvalState> evalMoves = new ArrayList<>();
         for(State s : moves){
-            evalMoves.add(new EvalState(currentState, s));
+            evalMoves.add(new EvalState(currentState, s, false));
         }
 
         evalMoves.sort(comparing(EvalState::getPoints).reversed());

@@ -23,7 +23,7 @@ public class GreedyAgentWIthEndgame implements Agent {
             ArrayList<State> moves = MoveGenerator.generateAllMoves(currentState);
             ArrayList<EvalState> evalMoves = new ArrayList<>();
             for (State s : moves) {
-                evalMoves.add(new EvalState(currentState, s));
+                evalMoves.add(new EvalState(currentState, s, false));
             }
 
             evalMoves.sort(comparing(EvalState::getPoints).reversed());

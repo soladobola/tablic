@@ -1,9 +1,6 @@
 package game;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class Stock implements Iterable<ArrayList<Card>> {
     private HashMap<String, ArrayList<Card>> stock;
@@ -16,6 +13,15 @@ public class Stock implements Iterable<ArrayList<Card>> {
          this.stock = stock;
     }
 
+
+
+    public List<Card> get(String symbol){
+        if(!stock.containsKey(symbol)){
+            return new ArrayList<>();
+        }
+
+        return stock.get(symbol);
+    }
 
 
     public void add(String key, Card card){
