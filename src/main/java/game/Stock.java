@@ -76,4 +76,13 @@ public class Stock implements Iterable<ArrayList<Card>> {
     public Iterator<ArrayList<Card>> iterator() {
         return new StockIterator(this.stock);
     }
+
+
+    public int size(){
+        int total = 0;
+        for(ArrayList<Card> entry : stock.values()){
+            total += entry.size();
+        }
+        return total;
+    }
 }

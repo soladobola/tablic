@@ -11,7 +11,7 @@ public class App {
         Agent player1 = new NeoAgent();
         Agent player2 = new GreedyAgent();
 
-        Contest contest = new Contest(player1, player2, 200);
+        Contest contest = new Contest(player1, player2, 100);
         contest.startContest();
 
     }

@@ -41,7 +41,9 @@ public class Contest {
 
     private int getPlayerScore(Agent player, Agent enemy){
         int score = player.getCurrentState().myStock.totalPoints();
-
+        int playerCardCount = player.getCurrentState().myStock.size();
+        int enemyCardCount = enemy.getCurrentState().myStock.size();
+        if(playerCardCount > enemyCardCount) score += 3;
         return score;
     }
 

@@ -83,7 +83,12 @@ public class Node {
 
 
     public int eval(){
-        return p1Stock.totalPoints() - p2Stock.totalPoints();
+        int p1CardCount = p1Stock.size();
+        int p2CardCount = p2Stock.size();
+        int weight = p1CardCount > p2CardCount ? 3 : -3;
+        if(p1CardCount == p2CardCount) weight = 0;
+
+        return p1Stock.totalPoints() - p2Stock.totalPoints() + weight;
     }
 
 
