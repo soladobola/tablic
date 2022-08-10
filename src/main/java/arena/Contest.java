@@ -25,18 +25,8 @@ public class Contest {
             p2.reset();
             manager = new Manager(p1, p2);
             manager.playGame();
-            if(manager.player1.getCurrentState().myStock.totalPoints() >
-                    manager.player2.getCurrentState().myStock.totalPoints()){
-                p1Win++;
-            } else if(manager.player1.getCurrentState().myStock.totalPoints() <
-                    manager.player2.getCurrentState().myStock.totalPoints()) {
 
-                p2Win++;
-            }
-
-            else {
-                remi++;
-            }
+            checkResult(p1, p2);
 
         }
 
@@ -47,6 +37,27 @@ public class Contest {
         System.out.println("Remi: " + remi + " ("+ (int)remiRate +"%)");
 
 
+    }
+
+    private int getPlayerScore(Agent player, Agent enemy){
+        int score = player.getCurrentState().myStock.totalPoints();
+
+        return score;
+    }
+
+    private void checkResult(Agent p1, Agent p2){
+        int p1Score = getPlayerScore(p1, p2);
+        int p2Score = getPlayerScore(p2, p1);
+
+
+        if(p1Score > p2Score){
+            p1Win++;
+        }
+        else if(p1Score < p2Score){
+            p2Win++;
+        } else {
+            remi++;
+        }
     }
 
 }
