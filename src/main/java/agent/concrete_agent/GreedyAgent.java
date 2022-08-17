@@ -1,9 +1,6 @@
 package agent.concrete_agent;
 
-import agent.Agent;
-import agent.EvalState;
-import agent.MoveGenerator;
-import agent.State;
+import agent.*;
 import game.Card;
 
 import java.util.ArrayList;
@@ -18,15 +15,8 @@ public class GreedyAgent implements Agent {
     @Override
     public State play() {
         ArrayList<State> moves = MoveGenerator.generateAllMoves(currentState);
-        // Wrap to eval object
-        ArrayList<EvalState> evalMoves = new ArrayList<>();
-        for(State s : moves){
-            evalMoves.add(new EvalState(currentState, s, false));
-        }
+        this.currentState = Heuristics.maximizePoints(this.currentState, moves);
 
-        evalMoves.sort(comparing(EvalState::getPoints).reversed());
-
-        this.currentState = evalMoves.get(0).state;
         return this.currentState;
 
     }

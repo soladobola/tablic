@@ -18,12 +18,8 @@ public class NeoAgent implements Agent {
 
 
         if(isLastHand()){
-
-            Endgame endgame = new Endgame();
-            ArrayList<Card> enemyHand = endgame.calculateEnemyHand(currentState);
-            this.currentState = endgame.getBestMove(currentState, enemyHand);
+            this.currentState = Heuristics.getBestMove(this.currentState);
             return this.currentState;
-
         }
 
 
@@ -46,7 +42,6 @@ public class NeoAgent implements Agent {
             List<State> allMoves = MoveGenerator.generateAllMoves(this.currentState);
             List<EvalState> allEvalMoves = Heuristics.wrapToEval(this.currentState, allMoves);
             allEvalMoves.sort(comparing(EvalState::getSumCapToEnemy));
-
             this.currentState = allEvalMoves.get(0).state;
 
         }

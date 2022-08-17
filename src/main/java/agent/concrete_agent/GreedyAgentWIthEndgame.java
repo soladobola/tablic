@@ -1,9 +1,6 @@
 package agent.concrete_agent;
 
-import agent.Agent;
-import agent.EvalState;
-import agent.MoveGenerator;
-import agent.State;
+import agent.*;
 import agent.endgame.Endgame;
 import game.Card;
 
@@ -19,24 +16,13 @@ public class GreedyAgentWIthEndgame implements Agent {
     @Override
     public State play() throws Exception {
 
-        if (isLastHand()) {
-
-            Endgame endgame = new Endgame();
-            ArrayList<Card> enemyHand = endgame.calculateEnemyHand(currentState);
-            this.currentState = endgame.getBestMove(currentState, enemyHand);
+        if(isLastHand()){
+            this.currentState = Heuristics.getBestMove(this.currentState);
             return this.currentState;
-
         }
-
 
         ArrayList<State> moves = MoveGenerator.generateAllMoves(currentState);
-        ArrayList<EvalState> evalMoves = new ArrayList<>();
-        for (State s : moves) {
-            evalMoves.add(new EvalState(currentState, s, false));
-        }
-
-        evalMoves.sort(comparing(EvalState::getPoints).reversed());
-        this.currentState = evalMoves.get(0).state;
+        this.currentState = Heuristics.maximizePoints(this.currentState, moves);
 
         return this.currentState;
     }

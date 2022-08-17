@@ -1,5 +1,6 @@
 package agent;
 
+import agent.endgame.Endgame;
 import game.Card;
 
 import java.util.ArrayList;
@@ -22,9 +23,15 @@ public class Heuristics {
        valuesMap.put(12, "J");
        valuesMap.put(13, "Q");
        valuesMap.put(14, "K");
+
     }
 
 
+    public static State getBestMove(State state) throws Exception {
+        Endgame endgame = new Endgame();
+        ArrayList<Card> enemyHand = endgame.calculateEnemyHand(state);
+        return endgame.getBestMove(state, enemyHand);
+    }
 
     // Note: true means that enemy may have that card
     public static boolean doesEnemyHasCard(String symbol, State state){
