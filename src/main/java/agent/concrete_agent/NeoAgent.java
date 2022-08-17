@@ -39,14 +39,14 @@ public class NeoAgent implements Agent {
 
         if(evalCapturesWithPoints.size() > 0){
             // Sort captures
-            evalCaptures.sort(comparing(EvalState::getPoints).reversed());
-            this.currentState = evalCaptures.get(0).state;
+            evalCapturesWithPoints.sort(comparing(EvalState::getPoints).reversed());
+            this.currentState = evalCapturesWithPoints.get(0).state;
 
         } else {
             List<State> allMoves = MoveGenerator.generateAllMoves(this.currentState);
             List<EvalState> allEvalMoves = Heuristics.wrapToEval(this.currentState, allMoves);
-            // TODO: min/max sum cap
             allEvalMoves.sort(comparing(EvalState::getSumCapToEnemy));
+
             this.currentState = allEvalMoves.get(0).state;
 
         }

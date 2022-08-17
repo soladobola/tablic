@@ -2,6 +2,7 @@ import agent.*;
 import agent.concrete_agent.GreedyAgent;
 import agent.concrete_agent.GreedyAgentWIthEndgame;
 import agent.concrete_agent.NeoAgent;
+import agent.concrete_agent.RandomAgent;
 import arena.Contest;
 
 public class App {
@@ -11,7 +12,7 @@ public class App {
         Agent player1 = new NeoAgent();
         Agent player2 = new GreedyAgent();
 
-        Contest contest = new Contest(player1, player2, 100);
+        Contest contest = new Contest(player1, player2, 1000, 100);
         contest.startContest();
 
     }
