@@ -1,5 +1,8 @@
 package agent;
 
+import game.Card;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +12,8 @@ public class EvalState {
    public State state;
    public int pointsWon;
    public int sumCapToEnemy;
+
+   public boolean canEnemyTakes;
 
 
    public EvalState(State prevState, State state, boolean advance){
@@ -20,8 +25,16 @@ public class EvalState {
 
        if(advance){
             calculateSumCapToEnemy();
+            calculateIfEnemyCanTakes();
        }
 
+   }
+
+
+   private void calculateIfEnemyCanTakes(){
+       // Hard to implement
+
+       this.canEnemyTakes = false;
    }
 
    private void calculateSumCapToEnemy(){

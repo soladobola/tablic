@@ -34,6 +34,9 @@ public class NeoAgent implements Agent {
         List<EvalState> evalCaptures = Heuristics.wrapToEval(this.currentState, captures);
         List<EvalState> evalCapturesWithPoints = Heuristics.getCapturesWithPoints(evalCaptures);
 
+        // Flow
+
+
         if(evalCapturesWithPoints.size() > 0){
             // Sort captures
             evalCaptures.sort(comparing(EvalState::getPoints).reversed());
