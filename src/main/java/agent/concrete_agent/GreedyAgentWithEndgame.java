@@ -1,14 +1,13 @@
 package agent.concrete_agent;
 
 import agent.*;
-import agent.endgame.Endgame;
 import game.Card;
 
 import java.util.ArrayList;
 
 import static java.util.Comparator.comparing;
 
-public class GreedyAgentWIthEndgame implements Agent {
+public class GreedyAgentWithEndgame implements Agent {
 
     State currentState;
     int cardsTaken = 0;
@@ -16,7 +15,7 @@ public class GreedyAgentWIthEndgame implements Agent {
     @Override
     public State play() throws Exception {
 
-        if(isLastHand()){
+        if (isLastHand()) {
             this.currentState = Heuristics.getBestMove(this.currentState);
             return this.currentState;
         }

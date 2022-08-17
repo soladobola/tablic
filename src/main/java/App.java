@@ -1,8 +1,6 @@
 import agent.*;
 import agent.concrete_agent.GreedyAgent;
-import agent.concrete_agent.GreedyAgentWIthEndgame;
 import agent.concrete_agent.NeoAgent;
-import agent.concrete_agent.RandomAgent;
 import arena.Contest;
 
 public class App {

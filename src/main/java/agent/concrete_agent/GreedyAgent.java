@@ -5,6 +5,7 @@ import game.Card;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
 import static java.util.Comparator.comparing;
 
 public class GreedyAgent implements Agent {
@@ -18,7 +19,6 @@ public class GreedyAgent implements Agent {
         this.currentState = Heuristics.maximizePoints(this.currentState, moves);
 
         return this.currentState;
-
     }
 
     @Override

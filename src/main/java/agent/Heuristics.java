@@ -33,6 +33,7 @@ public class Heuristics {
         return endgame.getBestMove(state, enemyHand);
     }
 
+
     // Note: true means that enemy may have that card
     public static boolean doesEnemyHasCard(String symbol, State state){
         int myStockCount = state.myStock.get(symbol).size();
@@ -72,7 +73,5 @@ public class Heuristics {
         return states.stream().filter(x->x.pointsWon > 0).collect(Collectors.toList());
 
     }
-
-
 
 }

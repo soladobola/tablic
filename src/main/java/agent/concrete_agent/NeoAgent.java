@@ -6,6 +6,7 @@ import game.Card;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import static java.util.Comparator.comparing;
 
 public class NeoAgent implements Agent {
@@ -17,7 +18,7 @@ public class NeoAgent implements Agent {
     public State play() throws Exception {
 
 
-        if(isLastHand()){
+        if (isLastHand()) {
             this.currentState = Heuristics.getBestMove(this.currentState);
             return this.currentState;
         }
@@ -25,15 +26,12 @@ public class NeoAgent implements Agent {
 
         // get all capture moves
         List<State> captures = MoveGenerator.generateCaptureMoves(this.currentState);
-
-        // Wrap states in eval object
         List<EvalState> evalCaptures = Heuristics.wrapToEval(this.currentState, captures);
         List<EvalState> evalCapturesWithPoints = Heuristics.getCapturesWithPoints(evalCaptures);
 
         // Flow
 
-
-        if(evalCapturesWithPoints.size() > 0){
+        if (evalCapturesWithPoints.size() > 0) {
             // Sort captures
             evalCapturesWithPoints.sort(comparing(EvalState::getPoints).reversed());
             this.currentState = evalCapturesWithPoints.get(0).state;
@@ -45,7 +43,6 @@ public class NeoAgent implements Agent {
             this.currentState = allEvalMoves.get(0).state;
 
         }
-
 
         return this.currentState;
 
@@ -73,7 +70,7 @@ public class NeoAgent implements Agent {
         this.cardsTaken = 0;
     }
 
-    private boolean isLastHand(){
+    private boolean isLastHand() {
         return cardsTaken > 18;
     }
 
